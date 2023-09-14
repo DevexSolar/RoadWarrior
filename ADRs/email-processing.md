@@ -23,7 +23,7 @@ There are ways however to provide access to mailbox indirectly:
    that redirects to service provider's page allowing to grant or deny the access.
     
 2. **System Mailbox** (client side): The mobile app acts as an E-mail client, accessing mailbox configuration and 
-credentials from the system (iOS, Android) Internet Accounts registry. User just need to select a mailbox to use
+credentials from the system (iOS, Android) Internet Accounts registry. User just needs to select a mailbox to use
 in the app settings or initial set-up wizard.
 
 The second approach looks more beneficial since the E-mails processed locally on device, and only those related to 
