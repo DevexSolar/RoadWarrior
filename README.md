@@ -24,7 +24,22 @@ Based on the limited available requirements, we had to make a number of assumpti
 
 ## Approach
 
-TODO - describe our architecture design approach
+We followed an architecture design approach with the steps below:
+
+1) Acknowledge requirements
+2) Define required assumptions to clarify the scope
+3) Identify product capabilities and high-level components using the Actor/Action approach
+4) Analyze architecture characteristics
+5) Define the most appropriate architecture style
+6) Restructure the components
+7) Prepare an overall component diagram
+8) Prepare additional (TODO - type) supporting diagrams
+9) Prepare a deployment diagram
+10) Document as ADRs the decisions we made throughout the entire process
+
+We had 5 days to design the architecture, so we conducted a multiple brainstorming sessions, as well as daily sync-up meetings.
+
+The deliverables of our architecture design are presented in the next section.
 
 ## Solution
 
