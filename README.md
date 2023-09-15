@@ -69,7 +69,7 @@ Based on the provided functional and non-functional requirements, we have identi
 | Architecture Characteristic | Rationale | Reference to requirements |
 | --- | --- | --- |
 | **Feasibility (cost/time)** | This is an implicit characteristic that takes into account the tight time frame and budget to implement a product MVP. | *"A new startup wants to build..."* |
-| **Scalability** / **Elasticity** | The system capacity will significantly grow over time, and the number of users and requests will increase respectively. Also, we anticipate spikes of user activity on weekends and cool down on working days, so system should be also elastic enough to scale noy only up, but also down. | *"2 million active users/week... 15 million total accounts"* |
+| **Scalability** / **Elasticity** | The system capacity will significantly grow over time, and the number of users and requests will increase respectively. Also, we anticipate spikes of user activity on weekends and cool down on working days, so system should be also elastic enough to scale not only up, but also down. | *"2 million active users/week... 15 million total accounts"* |
 | **Availability** | There is a strict requirement on the amount of uptime of the system. | *"max 5 minutes per month of unplanned downtime"* |
 | **Responsiveness** | There is a strict requirement on the amount of time it takes to get a response to the user. | *"Response time from web (800ms) and mobile (First-contentful paint of under 1.4 sec)"* |
 | **Interoperability** | The system must be integrated with a large number of third-party system to capture the reservation data. | *"must integrate seamlessly with existing travel systems..."* |
