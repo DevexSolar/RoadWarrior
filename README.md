@@ -51,11 +51,22 @@ TODO - Actor/Action diagram(s)
 
 ### Architecture Characteristics
 
-TODO - List and justify top priority characteristics
+Based on the provided functional and non-functional requirements, we have identified the following important architecture characteristics:
+
+| Architecture Characteristic | Rationale | Reference to requirements |
+| --- | --- | --- |
+| **Feasibility (cost/time)** | This is an implicit characteristic that takes into account the tight timeframes and budget to implement a product MVP. | *"A new startup wants to build..."* |
+| **Scalability** | The system capacity will significantly grow over time, and the number of users and requests will increase respectively. | *"2 million active users/week... 15 million total accounts"* |
+| **Availability** | There is a strict requirement on the amount of uptime of the system. | *"max 5 minutes per month of unplanned downtime"* |
+| **Responsiveness** | There is a strict requirement on the amount of time it takes to get a response to the user. | *"Response time from web (800ms) and mobile (First-contentful paint of under 1.4 sec)"* |
+| **Interoperability** | The system must be integrated with a large number of third-party system to capture the reservation data. | *"must integrate seamlessly with existing travel systems..."* |
+| **Extensibility** | The system will be gradually extended with more types of reservations and more data sources. | *"The system must interface with the agency’s existing airline, hotel, and car rental interface system..."* |
 
 ### Architecture Style
 
-TODO - Describe and justify the selected architecture style
+Based on the identified functional capabilties and justified key architecture characteristics, we decided to design architecture in a hybrid style, combining the key aspects of the microkernel architecture and event-driven architecture.
+
+More details about this decision are presented in the respective ADR: [Architecture style](ADRs/overall-architecture-style.md)
 
 ### Components
 The diagram below gives a high-level overview of how the logical components interact with each other as well as with 
