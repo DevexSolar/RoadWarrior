@@ -1,4 +1,4 @@
-# The Road Warrior
+![image](https://github.com/DevexSolar/RoadWarrior/assets/144768642/55b8cddc-2876-490d-82e0-cc7638e831b9)# The Road Warrior
 
 Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](https://learning.oreilly.com/live-events/architectural-katas/0636920097101/) challenge.
 
@@ -34,10 +34,12 @@ We followed an architecture design approach with the steps below:
 4) Analyze architecture characteristics
 5) Define the most appropriate architecture style
 6) Restructure the components
-7) Prepare an overall component diagram
-8) Prepare additional (TODO - type) supporting diagrams
-9) Prepare a deployment diagram
+7) Prepare an overall logical component diagram
+8) Prepare a physical component diagram
+9) Prepare additional diagrams to focus on key solution components
 10) Document as ADRs the decisions we made throughout the entire process
+
+We used Miro as a tool for both drawing and collaboration.
 
 We had 5 days to design the architecture, so we conducted a multiple brainstorming sessions, as well as daily sync-up meetings.
 
@@ -47,7 +49,14 @@ The deliverables of our architecture design are presented in the next section.
 
 ### Capabilities
 
-TODO - Actor/Action diagram(s)
+To illustrate the needs which the architecture must satisfy, We started the architecture design with outlining the different types of actors in the system and their actions. Then we prepared a draft list of the components that are required to cover those actions.
+
+We created the following capabilities diagram:
+
+<figure>
+  <img src="diagrams/capabilities.jpg" alt="Capabilities diagram">
+  <figcaption>Capabilities diagram</figcaption>
+</figure>
 
 ### Architecture Characteristics
 
@@ -64,7 +73,7 @@ Based on the provided functional and non-functional requirements, we have identi
 
 ### Architecture Style
 
-Based on the identified functional capabilties and justified key architecture characteristics, we decided to design architecture in a hybrid style, combining the key aspects of the microkernel architecture and event-driven architecture.
+Based on the (1) identified functional domain and capabilties and the (2) justified key architecture characteristics, we decided to design architecture in a hybrid style, combining the key aspects of the microkernel architecture and event-driven architecture.
 
 More details about this decision are presented in the respective ADR: [Architecture style](ADRs/overall-architecture-style.md)
 
