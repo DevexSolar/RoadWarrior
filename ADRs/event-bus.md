@@ -1,6 +1,6 @@
 # ADR.6 Event bus
 This ADR describes the approach to events processing (like new reservations, flights delays, etc) and selection of 
-event bus to distribute them.
+event bus to distribute them. The event bus has to be scalable, work across regions in the clouds, and persistent.
 
 ## Status `APPROVED`
 
