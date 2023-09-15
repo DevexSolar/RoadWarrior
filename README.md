@@ -1,4 +1,4 @@
-![image](https://github.com/DevexSolar/RoadWarrior/assets/144768642/55b8cddc-2876-490d-82e0-cc7638e831b9)# The Road Warrior
+# The Road Warrior
 
 Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](https://learning.oreilly.com/live-events/architectural-katas/0636920097101/) challenge.
 
