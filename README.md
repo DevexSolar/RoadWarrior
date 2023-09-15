@@ -8,9 +8,13 @@ Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](h
 
 ### Requirements
 
-A new startup wants to build the next generation online trip management dashboard to allow travelers to see all of their existing reservations organized by trips. The users should be able to use the application either through Web or through their mobile devices.
+A new startup wants to build the next generation online trip management dashboard to allow travelers to see all of 
+their existing reservations organized by trips. The users should be able to use the application either through Web 
+or through their mobile devices.
 
-The platform will collect reservations data by parsing users' emails or by interfacing with external systems. Users will be able to manually add, modify or remove reservations. They will see a dashboard with their upcoming trips, will post trip details to social media sites or will share directly with targeted people. 
+The platform will collect reservations data by parsing users' emails or by interfacing with external systems. 
+Users will be able to manually add, modify or remove reservations. They will see a dashboard with their upcoming 
+trips, will post trip details to social media sites or will share directly with targeted people. 
 
 The startup expects 15M registered users in the platform, having 2M of them be active active on a weekly basis. The startup also has a strict technical requirements for unplanned downtime (<5 mins per month), integration time (5 minutes), and response time (0.8s for Web and 1.4s for mobile).
 
@@ -115,7 +119,7 @@ Diagram notes:
    external auth provider (e.g. Auth0). Should support login via variety of providers including Google and major 
    social networks. It is being addressed on all the calls from UI/APIs to check whether token is valid. Separate 
    roles for backend components should be provided there so that we know who did what (audit).
-9. **In-app & E-mail Sharing API** is a small backend component that support in-app sharing (for the "Trips Shared 
+9. **In-app & E-mail Sharing API** is a small backend component that supports in-app sharing (for the "Trips Shared 
    with Me" section of Dashboard UI) and also performed E-mail invitation for unregistered users.
 10. Local storage and Mobile in-app storage should cache recent data to present the recent trip info in offline mode 
    and/or present the past data when app is still loading.
@@ -133,7 +137,7 @@ TODO - Deployment diagram here
 * TODO ADR.5 for cloud deployment 
 * ADR.6 [Event bus](./ADRs/event-bus.md)
 * TODO ADR.7 noSql database (flex data structure, replication, GridFS [mongo])
-* TODO ADR.8 CQRS & approach to breaking down components
+* ADR.8 [CQRS and scalability](./ADRs/cqrs.md)
 
 ## References
 
