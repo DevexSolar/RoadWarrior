@@ -2,7 +2,7 @@
 
 Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](https://learning.oreilly.com/live-events/architectural-katas/0636920097101/) challenge.
 
-![](road-warrior-logo.png "The Road Warrior logo")
+<img src="road-warrior-logo.png" width="400" alt="Road Warrior Logo"/>
 
 ## Problem
 
@@ -61,8 +61,10 @@ TODO - Describe and justify the selected architecture style
 The diagram below gives a high-level overview of how the logical components interact with each other as well as with 
 external service providers.
 
-![](diagrams/high-level-architecture.png "High level architecture diagram")
-
+<figure>
+  <img src="diagrams/high-level-architecture.png" alt="High-level architecture diagram">
+  <figcaption>High-level architecture diagram</figcaption>
+</figure>
 
 ### Deployment
 
