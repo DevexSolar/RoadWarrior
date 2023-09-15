@@ -10,7 +10,7 @@ We must meet 2 requirements in terms of responsiveness:
 - travel updates must be presented in the app within 5 minutes of generation by the source
 
 ### Application content load time
-To address requiremets for aplication content load time we can use caching, both on server side and on client side.
+To address requirements for aplication content load time we can use caching, both on server side and on client side.
 On server side caching (keeping in memory) everything will require too much resources taking into account total amount 
 of users. So we will cache just most actual data, which is travel details related to nearest or ongoing trip. We will 
 keep this data for each user in some in memory data grid.
