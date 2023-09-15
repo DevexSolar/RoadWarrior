@@ -2,6 +2,8 @@
 
 Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](https://learning.oreilly.com/live-events/architectural-katas/0636920097101/) challenge.
 
+![](road-warrior-logo.png "The Road Warrior logo")
+
 ## Problem
 
 ### Requirements
