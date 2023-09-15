@@ -31,6 +31,6 @@ allow to modify them separately (e.g. adding a cache to CRUD API for optimizing 
 
 Negative:
 
-* We have to create two physical component, create a separate load balancing pools for them, and ensure realtime updates are being
+* We have to create two physical components, create a separate load balancing pools for them, and ensure realtime updates are being
 propagated from persister to CRUD API via some other means, not just in-memory communication.
 

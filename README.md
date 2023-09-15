@@ -8,9 +8,13 @@ Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](h
 
 ### Requirements
 
-A new startup wants to build the next generation online trip management dashboard to allow travelers to see all of their existing reservations organized by trips. The users should be able to use the application either through Web or through their mobile devices.
+A new startup wants to build the next generation online trip management dashboard to allow travelers to see all of 
+their existing reservations organized by trips. The users should be able to use the application either through Web 
+or through their mobile devices.
 
-The platform will collect reservations data by parsing users' emails or by interfacing with external systems. Users will be able to manually add, modify or remove reservations. They will see a dashboard with their upcoming trips, will post trip details to social media sites or will share directly with targeted people. 
+The platform will collect reservations data by parsing users' emails or by interfacing with external systems. 
+Users will be able to manually add, modify or remove reservations. They will see a dashboard with their upcoming 
+trips, will post trip details to social media sites or will share directly with targeted people. 
 
 The startup expects 15M registered users in the platform, having 2M of them be active active on a weekly basis. The startup also has a strict technical requirements for unplanned downtime (<5 mins per month), integration time (5 minutes), and response time (0.8s for Web and 1.4s for mobile).
 
@@ -65,7 +69,7 @@ Based on the provided functional and non-functional requirements, we have identi
 | Architecture Characteristic | Rationale | Reference to requirements |
 | --- | --- | --- |
 | **Feasibility (cost/time)** | This is an implicit characteristic that takes into account the tight time frame and budget to implement a product MVP. | *"A new startup wants to build..."* |
-| **Scalability** | The system capacity will significantly grow over time, and the number of users and requests will increase respectively. | *"2 million active users/week... 15 million total accounts"* |
+| **Scalability** / **Elasticity** | The system capacity will significantly grow over time, and the number of users and requests will increase respectively. Also, we anticipate spikes of user activity on weekends and cool down on working days, so system should be also elastic enough to scale not only up, but also down. | *"2 million active users/week... 15 million total accounts"* |
 | **Availability** | There is a strict requirement on the amount of uptime of the system. | *"max 5 minutes per month of unplanned downtime"* |
 | **Responsiveness** | There is a strict requirement on the amount of time it takes to get a response to the user. | *"Response time from web (800ms) and mobile (First-contentful paint of under 1.4 sec)"* |
 | **Interoperability** | The system must be integrated with a large number of third-party system to capture the reservation data. | *"must integrate seamlessly with existing travel systems..."* |
@@ -94,7 +98,8 @@ Diagram notes:
 2. Message bus has to be scalable, working across multiple regions, and persistent. Kafka is a good choice here.
 3. **Reservation Persister** is a backend API for storing data to database (by the event parsers, which publish data 
    to message bus) and sending events (different event types - suitable for UI updates) about updates to message bus 
-   for "Presenter" to update its cache/update UIs immediately.
+   for "Presenter" to update its cache/update UIs immediately. The same storage and sending update events code is shared between this
+   component and the "write" part of the **Revervation CRUD API** below. 
 4. Database will contain both initial events and current state of the Trips, up to date. It's **Reservation 
    Persister**'s job to calculate the final state. Yearly per-user reports are being stored in the PDF files on the 
    disk (e.g. Amazon S3) and database contains just the links to generated reports when they are ready in 
@@ -115,7 +120,7 @@ Diagram notes:
    external auth provider (e.g. Auth0). Should support login via variety of providers including Google and major 
    social networks. It is being addressed on all the calls from UI/APIs to check whether token is valid. Separate 
    roles for backend components should be provided there so that we know who did what (audit).
-9. **In-app & E-mail Sharing API** is a small backend component that support in-app sharing (for the "Trips Shared 
+9. **In-app & E-mail Sharing API** is a small backend component that supports in-app sharing (for the "Trips Shared 
    with Me" section of Dashboard UI) and also performed E-mail invitation for unregistered users.
 10. Local storage and Mobile in-app storage should cache recent data to present the recent trip info in offline mode 
    and/or present the past data when app is still loading.
@@ -133,7 +138,7 @@ TODO - Deployment diagram here
 * TODO ADR.5 for cloud deployment 
 * ADR.6 [Event bus](./ADRs/event-bus.md)
 * TODO ADR.7 noSql database (flex data structure, replication, GridFS [mongo])
-* TODO ADR.8 CQRS & approach to breaking down components
+* ADR.8 [CQRS and scalability](./ADRs/cqrs.md)
 
 ## References
 
