@@ -1,7 +1,0 @@
-@startuml
-participant "Mail Server" as MS
-participant Poller
-
-Poller -> MS : Poll (POP3, IMAP)
-
-@enduml

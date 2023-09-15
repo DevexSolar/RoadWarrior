@@ -1,4 +1,4 @@
-![image](https://github.com/DevexSolar/RoadWarrior/assets/144768642/55b8cddc-2876-490d-82e0-cc7638e831b9)# The Road Warrior
+# The Road Warrior
 
 Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](https://learning.oreilly.com/live-events/architectural-katas/0636920097101/) challenge.
 
@@ -64,7 +64,7 @@ Based on the provided functional and non-functional requirements, we have identi
 
 | Architecture Characteristic | Rationale | Reference to requirements |
 | --- | --- | --- |
-| **Feasibility (cost/time)** | This is an implicit characteristic that takes into account the tight timeframes and budget to implement a product MVP. | *"A new startup wants to build..."* |
+| **Feasibility (cost/time)** | This is an implicit characteristic that takes into account the tight time frame and budget to implement a product MVP. | *"A new startup wants to build..."* |
 | **Scalability** | The system capacity will significantly grow over time, and the number of users and requests will increase respectively. | *"2 million active users/week... 15 million total accounts"* |
 | **Availability** | There is a strict requirement on the amount of uptime of the system. | *"max 5 minutes per month of unplanned downtime"* |
 | **Responsiveness** | There is a strict requirement on the amount of time it takes to get a response to the user. | *"Response time from web (800ms) and mobile (First-contentful paint of under 1.4 sec)"* |
@@ -73,7 +73,7 @@ Based on the provided functional and non-functional requirements, we have identi
 
 ### Architecture Style
 
-Based on the (1) identified functional domain and capabilties and the (2) justified key architecture characteristics, we decided to design architecture in a hybrid style, combining the key aspects of the microkernel architecture and event-driven architecture.
+Based on the (1) identified functional domain and capabilities and the (2) justified key architecture characteristics, we decided to design architecture in a hybrid style, combining the key aspects of the microkernel architecture and event-driven architecture.
 
 More details about this decision are presented in the respective ADR: [Architecture style](ADRs/overall-architecture-style.md)
 
@@ -82,11 +82,43 @@ The diagram below gives a high-level overview of how the logical components inte
 external service providers.
 
 <figure>
-  <img src="diagrams/high-level-architecture.png" alt="High-level architecture diagram">
-  <figcaption>High-level architecture diagram</figcaption>
+  <img src="diagrams/logical-component-diagram.png" alt="Logical component diagram">
+  <figcaption style="font-style: italic;text-align: center">Figure 2. Logical component diagram</figcaption>
 </figure>
 
-TODO - DC: comments
+Diagram notes:
+
+1. Agency retrievers, GDS (Apollo) retriever, Email parser are event parsers reading their sources and sending the 
+   standard JSON message to Message bus to be stored. They may include different fields (extended fields as per 
+   provider), but follow at least basic fields in the Domain model.
+2. Message bus has to be scalable, working across multiple regions, and persistent. Kafka is a good choice here.
+3. **Reservation Persister** is a backend API for storing data to database (by the event parsers, which publish data 
+   to message bus) and sending events (different event types - suitable for UI updates) about updates to message bus 
+   for "Presenter" to update its cache/update UIs immediately.
+4. Database will contain both initial events and current state of the Trips, up to date. It's **Reservation 
+   Persister**'s job to calculate the final state. Yearly per-user reports are being stored in the PDF files on the 
+   disk (e.g. Amazon S3) and database contains just the links to generated reports when they are ready in 
+   simple `<user>-<year>-<filename>` filename pattern.
+5. **Reservation CRUD API** incorporates REST API operations for reading and modifying contents of the trip that 
+   displayed in the Trip Dashboard UI in the client-facing apps (web and mobile). Besides REST API methods it also 
+   provides WebSocket-based endpoint that notifies the front-end app that has changed and should be 
+   updated in the user view. Backend instances subscribe to trip update messages in message bus, filtering by user IDs 
+   that are logged in to this particular instance. When update message comes, the UI is refreshed (backend sends 
+   Websocket and Mobile Push message to UI), and then the distributed cache entry gets updated with the new info 
+   (alternatively, the entry is evicted and later pulled up from the database when necessary).
+6. Distributed cache - should work across regions, scale to 15M user's trips (approx 100M trips max), is a 
+   read-through cache, should support ways to update data (like, evict entry).
+7. **Bulk Data Provider** is a backend API for reading bulk or historical data from DB, for usage by report generator 
+   and stats collector. This is to be able to scale separately and optimize the queries. Also, it can work based on 
+   the readonly DB replica.
+8. **Authenticator** is a backend for authentication and authorization, it supports token sharing/validation with an 
+   external auth provider (e.g. Auth0). Should support login via variety of providers including Google and major 
+   social networks. It is being addressed on all the calls from UI/APIs to check whether token is valid. Separate 
+   roles for backend components should be provided there so that we know who did what (audit).
+9. **In-app & E-mail Sharing API** is a small backend component that support in-app sharing (for the "Trips Shared 
+   with Me" section of Dashboard UI) and also performed E-mail invitation for unregistered users.
+10. Local storage and Mobile in-app storage should cache recent data to present the recent trip info in offline mode 
+   and/or present the past data when app is still loading.
 
 ### Deployment
 
@@ -105,4 +137,8 @@ TODO - Deployment diagram here
 
 ## References
 
-TODO - List of references
+* Architecture Katas 2023 [Kickoff presentation](https://on24static.akamaized.net/event/43/16/26/7/rt/1/documents/resourceList1694034742182/finalkatas1694034741100.pdf), including the requirements for the present design
+* [Microkernel architecture pattern](https://learning.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch03.html#idm46407727649072)
+* [Event-driven architecture pattern](https://learning.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch02.html)
+* [CQRS pattern](http://www.eventstore.com/cqrs-pattern)
+* [Blue-green deployment technique](https://docs.cloudfoundry.org/devguide/deploy-apps/blue-green.html)
