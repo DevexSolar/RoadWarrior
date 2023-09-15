@@ -64,7 +64,7 @@ Based on the provided functional and non-functional requirements, we have identi
 
 | Architecture Characteristic | Rationale | Reference to requirements |
 | --- | --- | --- |
-| **Feasibility (cost/time)** | This is an implicit characteristic that takes into account the tight timeframes and budget to implement a product MVP. | *"A new startup wants to build..."* |
+| **Feasibility (cost/time)** | This is an implicit characteristic that takes into account the tight time frame and budget to implement a product MVP. | *"A new startup wants to build..."* |
 | **Scalability** | The system capacity will significantly grow over time, and the number of users and requests will increase respectively. | *"2 million active users/week... 15 million total accounts"* |
 | **Availability** | There is a strict requirement on the amount of uptime of the system. | *"max 5 minutes per month of unplanned downtime"* |
 | **Responsiveness** | There is a strict requirement on the amount of time it takes to get a response to the user. | *"Response time from web (800ms) and mobile (First-contentful paint of under 1.4 sec)"* |
@@ -73,7 +73,7 @@ Based on the provided functional and non-functional requirements, we have identi
 
 ### Architecture Style
 
-Based on the (1) identified functional domain and capabilties and the (2) justified key architecture characteristics, we decided to design architecture in a hybrid style, combining the key aspects of the microkernel architecture and event-driven architecture.
+Based on the (1) identified functional domain and capabilities and the (2) justified key architecture characteristics, we decided to design architecture in a hybrid style, combining the key aspects of the microkernel architecture and event-driven architecture.
 
 More details about this decision are presented in the respective ADR: [Architecture style](ADRs/overall-architecture-style.md)
 
@@ -105,4 +105,8 @@ TODO - Deployment diagram here
 
 ## References
 
-TODO - List of references
+* Architecture Katas 2023 [Kickoff presentation](https://on24static.akamaized.net/event/43/16/26/7/rt/1/documents/resourceList1694034742182/finalkatas1694034741100.pdf), including the requirements for the present design
+* [Microkernel architecture pattern](https://learning.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch03.html#idm46407727649072)
+* [Event-driven architecture pattern](https://learning.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch02.html)
+* [CQRS pattern](http://www.eventstore.com/cqrs-pattern)
+* [Blue-green deployment technique](https://docs.cloudfoundry.org/devguide/deploy-apps/blue-green.html)

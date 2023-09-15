@@ -1,5 +1,7 @@
 # ADR.1 Architecture Style
 
+## Status `APPROVED`
+
 ## Description
 
 The microkernel architecture consists of a core system and plug-in modules. The core system contains general business logic, and the plugins implement additional cases, rules and features, as well as specialized processing. The plug-in modules are usually independent components that extend the core system to produce additional business capabilities.
@@ -8,7 +10,7 @@ The event-driven architecture is a distributed asynchronous architecture pattern
 
 ## Rationale:
 
-For the Road Warrior implementation, we need a cost-effective easy-to-deploy and flexible architecture style that allows contonious system extension with additional functionalities and data sources. In addition, we have one central domain - Reservations - and almost all functionalities are related to this domain.
+For the Road Warrior implementation, we need a cost-effective easy-to-deploy and flexible architecture style that allows continuous system extension with additional functionalities and data sources. In addition, we have one central domain - Reservations - and almost all functionalities are related to this domain.
 
 We believe that microkernel architecture style is very suitable for our context. We will create a core component (Reservation Persister), without which the system cannot work. Around this core, we will have "write" plugins, that can be both subdomain partitioned (airline, hotel, car rental, train) and technically partitioned (email parser, agency booking feeds, GDS interfaces, etc). Also, we will have several "read" plugins - dashboard presenter, single reservation viewer, trip sharer, bulk data provider.
 
@@ -27,7 +29,7 @@ Combining microkernel and event-driven architecture, we will achieve:
  - Agility
  - Extensibility
  - Ease of deployment
- - Scalability at pluging feature level
+ - Scalability at plug-in feature level
 
 ### Negative:
 
