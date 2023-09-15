@@ -56,8 +56,11 @@ TODO - List and justify top priority characteristics
 TODO - Describe and justify the selected architecture style
 
 ### Components
+The diagram below gives a high-level overview of how the logical components interact with each other as well as with 
+external service providers.
 
-TODO - HL + detailed Components & sequence diagrams
+![](diagrams/high-level-architecture.png "High level architecture diagram")
+
 
 ### Deployment
 
