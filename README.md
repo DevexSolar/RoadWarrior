@@ -66,16 +66,22 @@ external service providers.
   <figcaption>High-level architecture diagram</figcaption>
 </figure>
 
+TODO - DC: comments
+
 ### Deployment
 
 TODO - Deployment diagram here
 
 ## Architecture Decision Records
 
-* TODO - ADR.1 Architecture Characteristics 
+* ADR.1 [Architecture Style](./ADRs/overall-architecture-style.md) 
 * ADR.2 [E-mail Processing](./ADRs/email-processing.md)
-* TODO - ADR for local caching & distributed cache
-* TODO - ADR for blue-green deployment
+* ADR.3 [Responsiveness (Caching)](./ADRs/responsiveness.md)
+* TODO ADR.4 for blue-green and HA&DR
+* TODO ADR.5 for cloud deployment 
+* ADR.6 [Event bus](./ADRs/event-bus.md)
+* TODO ADR.7 noSql database (flex data structure, replication, GridFS [mongo])
+* TODO ADR.8 CQRS & approach to breaking down components
 
 ## References
 
