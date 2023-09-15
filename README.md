@@ -98,7 +98,8 @@ Diagram notes:
 2. Message bus has to be scalable, working across multiple regions, and persistent. Kafka is a good choice here.
 3. **Reservation Persister** is a backend API for storing data to database (by the event parsers, which publish data 
    to message bus) and sending events (different event types - suitable for UI updates) about updates to message bus 
-   for "Presenter" to update its cache/update UIs immediately.
+   for "Presenter" to update its cache/update UIs immediately. The same storage and sending update events code is shared between this
+   component and the "write" part of the **Revervation CRUD API** below. 
 4. Database will contain both initial events and current state of the Trips, up to date. It's **Reservation 
    Persister**'s job to calculate the final state. Yearly per-user reports are being stored in the PDF files on the 
    disk (e.g. Amazon S3) and database contains just the links to generated reports when they are ready in 
