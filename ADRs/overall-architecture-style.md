@@ -14,7 +14,7 @@ For the Road Warrior implementation, we need a cost-effective easy-to-deploy and
 
 We believe that microkernel architecture style is very suitable for our context. We will create a core component (Reservation Persister), without which the system cannot work. Around this core, we will have "write" plugins, that can be both subdomain partitioned (airline, hotel, car rental, train) and technically partitioned (email parser, agency booking feeds, GDS interfaces, etc). Also, we will have several "read" plugins - dashboard presenter, single reservation viewer, trip sharer, bulk data provider.
 
-In addition, we need a simple event processing flow to capture the reservations coming from various sources. The most common implementation approach is to apply event-driven architecture, where different event processors will process the incoming reservations and will publishing a events ready for registration by the core component (Reservation Persister).
+In addition, we need a simple event processing flow to capture the reservations coming from various sources. The most common implementation approach is to apply event-driven architecture, where different event processors will process the incoming reservations and will publishing events ready for registration by the core component (Reservation Persister).
 
 ## Decision
 
