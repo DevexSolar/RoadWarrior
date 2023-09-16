@@ -145,9 +145,11 @@ Diagram notes:
 10. Local storage and Mobile in-app storage should cache recent data to present the recent trip info in offline mode 
    and/or present the past data when app is still loading.
 
-### Physical diagram
+### Physical component diagram
 The purpose of the following diagram is to show layers of the physical components so that devops can start 
-planning the deployment.
+planning the deployment. This is not much different from above, but aggregated UI components
+and backend APIs for UI into Backend-for-Frontend, as we believe from deployment standpoint it's easier, and anyway the same team is gonna work on that.
+Also, we find this important to emphasize there is a load-balancer between UI and BFF.
 
 <figure>
   <img src="diagrams/physical-components-layered.jpg" alt="Physical component diagram (layered)">
