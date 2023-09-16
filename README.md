@@ -1,5 +1,22 @@
 # The Road Warrior
 
+<!-- TOC -->
+* [The Road Warrior](#the-road-warrior)
+  * [Problem](#problem)
+    * [Requirements](#requirements)
+    * [Assumptions](#assumptions)
+    * [Approach](#approach)
+  * [Solution](#solution)
+    * [Capabilities](#capabilities)
+    * [Architecture Characteristics](#architecture-characteristics)
+    * [Architecture Style](#architecture-style)
+    * [Components](#components)
+    * [Logical diagram](#logical-diagram)
+    * [Physical diagram](#physical-diagram)
+  * [Architecture Decision Records](#architecture-decision-records)
+  * [References](#references)
+<!-- TOC -->
+
 Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](https://learning.oreilly.com/live-events/architectural-katas/0636920097101/) challenge.
 
 <img src="road-warrior-logo.png" alt="Road Warrior Logo" width="400" height="99"/>
@@ -129,6 +146,8 @@ Diagram notes:
    and/or present the past data when app is still loading.
 
 ### Physical diagram
+The purpose of the following diagram is to show layers of the physical components so that devops can start 
+planning the deployment.
 
 <figure>
   <img src="diagrams/physical-components-layered.jpg" alt="Physical component diagram (layered)">
