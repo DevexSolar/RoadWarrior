@@ -137,7 +137,7 @@ TODO - Deployment diagram here
 * TODO ADR.4 for blue-green and HA&DR
 * TODO ADR.5 for cloud deployment 
 * ADR.6 [Event bus](./ADRs/event-bus.md)
-* TODO ADR.7 noSql database (flex data structure, replication, GridFS [mongo])
+* ADR.7 [Efficient data storage](./ADRs/efficient-data-storage.md)
 * ADR.8 [CQRS and scalability](./ADRs/cqrs.md)
 
 ## References
@@ -147,3 +147,4 @@ TODO - Deployment diagram here
 * [Event-driven architecture pattern](https://learning.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch02.html)
 * [CQRS pattern](http://www.eventstore.com/cqrs-pattern)
 * [Blue-green deployment technique](https://docs.cloudfoundry.org/devguide/deploy-apps/blue-green.html)
+* [SQL vs NoSQL database](https://www.integrate.io/blog/the-sql-vs-nosql-difference/)
