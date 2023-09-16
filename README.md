@@ -12,18 +12,17 @@ challenge.
 
 <!-- TOC -->
 
-* [Contents](#contents)
 * [Problem](#problem)
-    * [Requirements](#requirements)
-    * [Assumptions](#assumptions)
+  * [Requirements](#requirements)
+  * [Assumptions](#assumptions)
 * [Approach](#approach)
 * [Solution](#solution)
-    * [Capabilities](#capabilities)
-    * [Architecture Characteristics](#architecture-characteristics)
-    * [Architecture Style](#architecture-style)
-    * [Components](#components)
-        * [Logical component diagram](#logical-component-diagram)
-        * [Physical component diagram](#physical-component-diagram)
+  * [Capabilities](#capabilities)
+  * [Architecture Characteristics](#architecture-characteristics)
+  * [Architecture Style](#architecture-style)
+  * [Components](#components)
+    * [Logical component diagram](#logical-component-diagram)
+    * [Physical component diagram](#physical-component-diagram)
 * [Architecture Decision Records](#architecture-decision-records)
 * [References](#references)
 
