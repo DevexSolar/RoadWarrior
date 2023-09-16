@@ -2,13 +2,13 @@
 
 Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](https://learning.oreilly.com/live-events/architectural-katas/0636920097101/) challenge.
 
-<img src="road-warrior-logo.png" width="400" alt="Road Warrior Logo"/>
+<img src="road-warrior-logo.png" alt="Road Warrior Logo" width="400" height="99"/>
 
 ## Problem
 
 ### Requirements
 
-A new startup wants to build the next generation online trip management dashboard to allow travelers to see all of 
+A new startup wants to build a next generation online trip management dashboard to allow travelers to see all of 
 their existing reservations organized by trips. The users should be able to use the application either through Web 
 or through their mobile devices.
 
@@ -32,16 +32,16 @@ Based on the limited available requirements, we had to make a number of assumpti
 
 We followed an architecture design approach with the steps below:
 
-1) Acknowledge requirements
-2) Define required assumptions to clarify the scope
-3) Identify product capabilities and high-level components using the Actor/Action approach
-4) Analyze architecture characteristics
-5) Define the most appropriate architecture style
-6) Restructure the components
-7) Prepare an overall logical component diagram
-8) Prepare a physical component diagram
-9) Prepare additional diagrams to focus on key solution components
-10) Document as ADRs the decisions we made throughout the entire process
+1. Acknowledge requirements
+2. Define required assumptions to clarify the scope
+3. Identify product capabilities and high-level components using the Actor/Action approach
+4. Analyze architecture characteristics
+5. Define the most appropriate architecture style
+6. Restructure the components
+7. Prepare an overall logical component diagram
+8. Prepare a physical component diagram
+9. Prepare additional diagrams to focus on key solution components
+10. Document as ADRs the decisions we made throughout the entire process
 
 We used Miro as a tool for both drawing and collaboration.
 
@@ -66,14 +66,14 @@ We created the following capabilities diagram:
 
 Based on the provided functional and non-functional requirements, we have identified the following important architecture characteristics:
 
-| Architecture Characteristic | Rationale | Reference to requirements |
-| --- | --- | --- |
-| **Feasibility (cost/time)** | This is an implicit characteristic that takes into account the tight time frame and budget to implement a product MVP. | *"A new startup wants to build..."* |
-| **Scalability** / **Elasticity** | The system capacity will significantly grow over time, and the number of users and requests will increase respectively. Also, we anticipate spikes of user activity on weekends and cool down on working days, so system should be also elastic enough to scale not only up, but also down. | *"2 million active users/week... 15 million total accounts"* |
-| **Availability** | There is a strict requirement on the amount of uptime of the system. | *"max 5 minutes per month of unplanned downtime"* |
-| **Responsiveness** | There is a strict requirement on the amount of time it takes to get a response to the user. | *"Response time from web (800ms) and mobile (First-contentful paint of under 1.4 sec)"* |
-| **Interoperability** | The system must be integrated with a large number of third-party system to capture the reservation data. | *"must integrate seamlessly with existing travel systems..."* |
-| **Extensibility** | The system will be gradually extended with more types of reservations and more data sources. | *"The system must interface with the agency’s existing airline, hotel, and car rental interface system..."* |
+| Architecture Characteristic      | Rationale                                                                                                                                                                                                                                                                                   | Reference to requirements                                                                                   |
+|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| **Feasibility (cost/time)**      | This is an implicit characteristic that takes into account the tight time frame and budget to implement a product MVP.                                                                                                                                                                      | *"A new startup wants to build..."*                                                                         |
+| **Scalability** / **Elasticity** | The system capacity will significantly grow over time, and the number of users and requests will increase respectively. Also, we anticipate spikes of user activity on weekends and cool down on working days, so system should be also elastic enough to scale not only up, but also down. | *"2 million active users/week... 15 million total accounts"*                                                |
+| **Availability**                 | There is a strict requirement on the amount of uptime of the system.                                                                                                                                                                                                                        | *"max 5 minutes per month of unplanned downtime"*                                                           |
+| **Responsiveness**               | There is a strict requirement on the amount of time it takes to get a response to the user.                                                                                                                                                                                                 | *"Response time from web (800ms) and mobile (First-contentful paint of under 1.4 sec)"*                     |
+| **Interoperability**             | The system must be integrated with a large number of third-party system to capture the reservation data.                                                                                                                                                                                    | *"must integrate seamlessly with existing travel systems..."*                                               |
+| **Extensibility**                | The system will be gradually extended with more types of reservations and more data sources.                                                                                                                                                                                                | *"The system must interface with the agency’s existing airline, hotel, and car rental interface system..."* |
 
 ### Architecture Style
 
@@ -83,7 +83,7 @@ More details about this decision are presented in the respective ADR: [Architect
 
 ### Components
 
-#### Logical diagram
+### Logical diagram
 
 The diagram below gives a high-level overview of how the logical components interact with each other as well as with 
 external service providers.
@@ -128,9 +128,12 @@ Diagram notes:
 10. Local storage and Mobile in-app storage should cache recent data to present the recent trip info in offline mode 
    and/or present the past data when app is still loading.
 
-#### Physical diagram
+### Physical diagram
 
-TODO - Physical component diagram here
+<figure>
+  <img src="diagrams/physical-component-layered.png" alt="Physical component diagram (layered)">
+  <figcaption style="font-style: italic;text-align: center">Figure 3. Physical component diagram (layered)</figcaption>
+</figure>
 
 ## Architecture Decision Records
 
