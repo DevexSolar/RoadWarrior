@@ -180,7 +180,7 @@ work on that. Also, we find this important to emphasize there is a load-balancer
 * ADR.1 [Architecture Style](ADRs/overall-architecture-style.md)
 * ADR.2 [E-mail Processing](ADRs/email-processing.md)
 * ADR.3 [Responsiveness (Caching)](ADRs/responsiveness.md)
-* ADR.4 [High Availability, Disaster Recovery, and Blue-Green Deployment](ADRs/hadr.md)
+* ADR.4 [High Availability and Disaster Recovery](ADRs/hadr.md)
 * ADR.5 [Cloud Deployment](ADRs/cloud-deployment.md)
 * ADR.6 [Event bus](ADRs/event-bus.md)
 * ADR.7 [Efficient data storage](ADRs/efficient-data-storage.md)
