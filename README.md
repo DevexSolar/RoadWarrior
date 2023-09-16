@@ -132,17 +132,19 @@ Diagram notes and component descriptions:
 
 1. Agency retrievers, GDS (Apollo) retriever, Email parser are event parsers reading their sources and sending the
    standard JSON message to a Message bus for processing and storage. They may include different fields (extended fields as per
-   provider), but follow at least basic fields from the Domain model.
-2. The **Message bus** is a scalable distributed event-streaming platform, working across multiple regions, and persistent. Kafka is a good choice here.
+   provider), but follow at least basic fields from the Domain model. See [ADR.2](ADRs/email-processing.md) for more 
+   details on E-mail processing.
+2. The **Message bus** is a scalable distributed event-streaming platform, working across multiple regions, and 
+   persistent. Kafka is a good choice here. Please refer to [ADR.6](ADRs/event-bus.md) for more information.
 3. **Reservation Persister** is a backend API for storing data to a database (by the event parsers, which publish data
    to message bus) and sending events (different event types - suitable for UI updates) about updates to message bus
    for "Presenter" to update its cache/update UIs immediately. The same storage and sending update events code is shared
-   between this
-   component and the "write" part of the **Reservation CRUD API** below.
+   between this component and the "write" part of the **Reservation CRUD API** below.
 4. **Database** will contain both initial events and current state of the reservations, up to date. It's **Reservation
    Persister**'s job to calculate the final state. Yearly per-user reports are being stored in PDF files on the
    disk (e.g. Amazon S3) and the database contains just the links to generated reports when they are ready in
-   simple `<user>-<year>-<filename>` filename pattern.
+   simple `<user>-<year>-<filename>` filename pattern. Please refer to [ADR.7](ADRs/efficient-data-storage.md) for more 
+   information. 
 5. **Reservation CRUD API** incorporates REST API operations for reading and modifying contents of the trip that
    displayed in the Trip Dashboard UI in the client-facing apps (web and mobile). Besides REST API methods it also
    provides WebSocket-based endpoint that notifies the front-end app for any changes that should force the user view to be updated. Backend instances subscribe to reservation update messages in the message bus, filtering by IDs of users who are logged in to this particular instance. When update message comes, the UI is refreshed (backend sends
