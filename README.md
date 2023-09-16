@@ -28,7 +28,7 @@ Based on the limited available requirements, we had to make a number of assumpti
 - Reservations data can be retrieved in 3 ways - email parsing, APIs of travel companies (airlines, hotels, car rentals) and APIs of global distribution systems (such as SABRE and APOLLO).
 - Retrieved data will be "read-only" and the platform will not initiate any updates on the reservations.
 
-## Approach
+### Approach
 
 We followed an architecture design approach with the steps below:
 
@@ -131,17 +131,17 @@ Diagram notes:
 ### Physical diagram
 
 <figure>
-  <img src="diagrams/physical-component-layered.png" alt="Physical component diagram (layered)">
+  <img src="diagrams/physical-components-layered.jpg" alt="Physical component diagram (layered)">
   <figcaption style="font-style: italic;text-align: center">Figure 3. Physical component diagram (layered)</figcaption>
 </figure>
 
 ## Architecture Decision Records
 
-* ADR.1 [Architecture Style](./ADRs/overall-architecture-style.md) 
+* ADR.1 [Architecture Style](./ADRs/overall-architecture-style.md)
 * ADR.2 [E-mail Processing](./ADRs/email-processing.md)
 * ADR.3 [Responsiveness (Caching)](./ADRs/responsiveness.md)
 * TODO ADR.4 for blue-green and HA&DR
-* TODO ADR.5 for cloud deployment 
+* TODO ADR.5 for cloud deployment
 * ADR.6 [Event bus](./ADRs/event-bus.md)
 * ADR.7 [Efficient data storage](./ADRs/efficient-data-storage.md)
 * ADR.8 [CQRS and scalability](./ADRs/cqrs.md)
