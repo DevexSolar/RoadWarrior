@@ -44,8 +44,7 @@ Common cloud platforms are known for their good integration with CI/CD pipelines
 
 ## Decision
 
-We suggest choosing one of the common cloud platforms for deployment, for example Amazon EKS, Google Kubernetes Engine,
-Azure Kubernetes Service. The decision yet to made based on cost analysis, quality of customer support,
+We suggest choosing one of the common cloud platforms for deployment, for example Amazon EKS, Google Kubernetes Engine, or Azure Kubernetes Service. The decision yet to made based on cost analysis, quality of customer support,
 and availability of service (the latter must not be less than one required for the product).
 
 ## Consequences
@@ -56,4 +55,4 @@ Positive:
 
 Negative:
 
-* There is certain overhead in terms of development of cloud-related features.
+* There is a certain overhead in terms of development of cloud-related features.

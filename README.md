@@ -16,7 +16,7 @@ challenge.
 * [Problem](#problem)
     * [Requirements](#requirements)
     * [Assumptions](#assumptions)
-    * [Approach](#approach)
+* [Approach](#approach)
 * [Solution](#solution)
     * [Capabilities](#capabilities)
     * [Architecture Characteristics](#architecture-characteristics)
@@ -57,7 +57,7 @@ Based on the limited available requirements, we had to make a number of assumpti
   and APIs of global distribution systems (such as SABRE and APOLLO).
 * Retrieved data will be _read-only_ and the platform will not initiate any updates on the reservations.
 
-### Approach
+## Approach
 
 We followed an architecture design approach with the steps below:
 
@@ -83,7 +83,7 @@ The deliverables of our architecture design are presented in the next section.
 
 ### Capabilities
 
-To illustrate the needs which the architecture must satisfy, We started the architecture design with outlining the
+To illustrate the needs which the architecture must satisfy, we started the architecture design with outlining the
 different types of actors in the system and their actions. Then we prepared a draft list of the components that are
 required to cover those actions.
 
@@ -132,32 +132,30 @@ external service providers.
 Diagram notes and component descriptions:
 
 1. Agency retrievers, GDS (Apollo) retriever, Email parser are event parsers reading their sources and sending the
-   standard JSON message to Message bus to be stored. They may include different fields (extended fields as per
-   provider), but follow at least basic fields in the Domain model.
-2. Message bus has to be scalable, working across multiple regions, and persistent. Kafka is a good choice here.
-3. **Reservation Persister** is a backend API for storing data to database (by the event parsers, which publish data
+   standard JSON message to a Message bus for processing and storage. They may include different fields (extended fields as per
+   provider), but follow at least basic fields from the Domain model.
+2. The **Message bus** is a scalable distributed event-streaming platform, working across multiple regions, and persistent. Kafka is a good choice here.
+3. **Reservation Persister** is a backend API for storing data to a database (by the event parsers, which publish data
    to message bus) and sending events (different event types - suitable for UI updates) about updates to message bus
    for "Presenter" to update its cache/update UIs immediately. The same storage and sending update events code is shared
    between this
    component and the "write" part of the **Reservation CRUD API** below.
-4. Database will contain both initial events and current state of the Trips, up to date. It's **Reservation
-   Persister**'s job to calculate the final state. Yearly per-user reports are being stored in the PDF files on the
-   disk (e.g. Amazon S3) and database contains just the links to generated reports when they are ready in
+4. **Database** will contain both initial events and current state of the reservations, up to date. It's **Reservation
+   Persister**'s job to calculate the final state. Yearly per-user reports are being stored in PDF files on the
+   disk (e.g. Amazon S3) and the database contains just the links to generated reports when they are ready in
    simple `<user>-<year>-<filename>` filename pattern.
 5. **Reservation CRUD API** incorporates REST API operations for reading and modifying contents of the trip that
    displayed in the Trip Dashboard UI in the client-facing apps (web and mobile). Besides REST API methods it also
-   provides WebSocket-based endpoint that notifies the front-end app that has changed and should be
-   updated in the user view. Backend instances subscribe to trip update messages in message bus, filtering by user IDs
-   that are logged in to this particular instance. When update message comes, the UI is refreshed (backend sends
+   provides WebSocket-based endpoint that notifies the front-end app for any changes that should force the user view to be updated. Backend instances subscribe to reservation update messages in the message bus, filtering by IDs of users who are logged in to this particular instance. When update message comes, the UI is refreshed (backend sends
    Websocket and Mobile Push message to UI), and then the distributed cache entry gets updated with the new info
    (alternatively, the entry is evicted and later pulled up from the database when necessary).
-6. Distributed cache - should work across regions, scale to 15M user's trips (approx 100M trips max), is a
+6. **Distributed** cache - should work across regions, scale to 15M user trips (approx 100M trips), is a
    read-through cache, should support ways to update data (like, evict entry).
-7. **Bulk Data Provider** is a backend API for reading bulk or historical data from DB, for usage by report generator
-   and stats collector. This is to be able to scale separately and optimize the queries. Also, it can work based on
-   the readonly DB replica.
-8. **Authenticator** is a backend for authentication and authorization, it supports token sharing/validation with an
-   external auth provider (e.g. Auth0). Should support login via variety of providers including Google and major
+7. **Bulk Data Provider** is a backend API for reading bulk or historical data from the database, for usage by **Report Generator**
+   and **Stats Collector**. This component should scale separately to optimize the queries. Also, it can work based on
+   a read-only DB replica.
+8. **Authenticator** is a backend component for authentication and authorization, it supports token sharing/validation with an
+   external authentication provider (e.g. Auth0). It should support login via variety of providers including Google and major
    social networks. It is being addressed on all the calls from UI/APIs to check whether token is valid. Separate
    roles for backend components should be provided there so that we know who did what (audit).
 9. **In-app & E-mail Sharing API** is a small backend component that supports in-app sharing (for the "Trips Shared
