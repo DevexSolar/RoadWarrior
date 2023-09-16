@@ -75,7 +75,10 @@ on certain delays, properly configured for a particular runtime environment.
     2. Message brokers should be spread across regions.
     3. Data volumes should be replicated and highly available.
 2. On each site, at least two instances of every time- or data- critical component should be run at a time.
-3. As for rolling out of new releases let us leverage blue-green deployment technique.
+3. Rollout of a new release should be without interruption of service in technique known as blue-green deployment. 
+   We don't really need nor want (for the sake of saving resources) two real environments, "green" and "blue". Instead,
+   the deployment mechanism should be able to start up "green" nodes one by one and re-route traffic to them, whilst 
+   "blue" nodes are excluded from load balancing one by one and then stopped. 
 4. The development team should make best efforts to ensure code sustainability and minimization of data loss (e.g.
    loss of incoming requests). Transactional processing, correctly implemented shutdown logic is a must.
 
