@@ -1,5 +1,5 @@
 # ADR.3 Approach to responsiveness requirements
-This ADR describes how we addresses the responsiveness requiremets (application start time and the time to react to 
+This ADR describes how we addresses the responsiveness requirements (application start time and the time to react to 
 new events on reservations).
 
 ## Status `APPROVED`
@@ -23,8 +23,8 @@ We will use batch loading of updates from GDS/agencies APIs to keep 5 minutes pr
 number of new events.
 
 ## Decision
-- Use caching (server side and client side)
-- Batch reading and processing events from agencies APIs 
+1. We will use **caching** - server side and client side.
+2. We will apply **batch reading and processing** of events from agencies APIs.
 
 ## Consequences
 

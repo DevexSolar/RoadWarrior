@@ -59,7 +59,7 @@ We created the following capabilities diagram:
 
 <figure>
   <img src="diagrams/capabilities.jpg" alt="Capabilities diagram">
-  <figcaption>Capabilities diagram</figcaption>
+  <figcaption style="font-style: italic;text-align: center">Figure 1. Capabilities diagram</figcaption>
 </figure>
 
 ### Architecture Characteristics
@@ -82,6 +82,9 @@ Based on the (1) identified functional domain and capabilities and the (2) justi
 More details about this decision are presented in the respective ADR: [Architecture style](ADRs/overall-architecture-style.md)
 
 ### Components
+
+#### Logical diagram
+
 The diagram below gives a high-level overview of how the logical components interact with each other as well as with 
 external service providers.
 
@@ -125,9 +128,9 @@ Diagram notes:
 10. Local storage and Mobile in-app storage should cache recent data to present the recent trip info in offline mode 
    and/or present the past data when app is still loading.
 
-### Deployment
+#### Physical diagram
 
-TODO - Deployment diagram here
+TODO - Physical component diagram here
 
 ## Architecture Decision Records
 
@@ -142,7 +145,6 @@ TODO - Deployment diagram here
 
 ## References
 
-* Architecture Katas 2023 [Kickoff presentation](https://on24static.akamaized.net/event/43/16/26/7/rt/1/documents/resourceList1694034742182/finalkatas1694034741100.pdf), including the requirements for the present design
 * [Microkernel architecture pattern](https://learning.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch03.html#idm46407727649072)
 * [Event-driven architecture pattern](https://learning.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch02.html)
 * [CQRS pattern](http://www.eventstore.com/cqrs-pattern)

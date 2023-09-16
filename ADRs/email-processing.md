@@ -47,7 +47,7 @@ travel events as the output.
 Transformation process is server-side only and it can be accessed via API endpoint.
 
 ## Decision
-1. Combine both approaches of polling for maximum coverage of possible mail server configurations and user behavioral patterns.
+Combine both approaches of polling for maximum coverage of possible mail server configurations and user behavioral patterns.
 
 ## Consequences
 

@@ -23,7 +23,7 @@ We have the following requirements to the data storage of Road Warrior:
 
 ## Decision
 
-We believe that document-based NoSQL database is the best fit for data storage. Moreover, we select **MongoDB** in particular due to its maturity, its efficiency for web applications, its excellent integration with most popular web/mobile programming languages, as well as its ability for high performance and high availability.
+We believe that document-based **NoSQL** database is the best fit for data storage for our product. Moreover, we select **MongoDB** in particular due to its maturity, its efficiency for web applications, its excellent integration with most popular web/mobile programming languages, as well as its ability for high performance and high availability.
 
 ## Consequences
 

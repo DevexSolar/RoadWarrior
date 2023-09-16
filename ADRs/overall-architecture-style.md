@@ -18,7 +18,7 @@ In addition, we need a simple event processing flow to capture the reservations 
 
 ## Decision
 
-We are designing a hybrid architecture combining the key aspects of the microkernel architecture and event-driven architecture pattern with broker topology.
+We are designing a **hybrid** architecture combining the key aspects of the **microkernel** architecture and **event-driven** architecture pattern with broker topology.
 
 ## Consequences
 

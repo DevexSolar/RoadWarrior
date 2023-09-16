@@ -11,15 +11,17 @@ Storage of data following different pattern compared to reading:
 not only because of the user growth, but with more agencies being connected to the platform.
 - For storage, we may be able to start with several server instances, and scale with growth.
 - On other other hand side, reading data is needed for all the active users,which may mean up to 2 Million users per week.
-That is why services, providing data for UI display, has to be massively scalable to hundres of nodes.
+
+That is why services, providing data for UI display, has to be massively scalable to hundreds of nodes.
 
 At the same time, the rare occasions, when user is modifying the data about reservations directly,
 do not need to be separated into separate service, as it's assumed to be a rare operation.
 
 ## Decision
-According to CQRS principle (http://www.eventstore.com/cqrs-pattern), we will separate backend API
+We will apply **CQRS principle** (http://www.eventstore.com/cqrs-pattern) - we will separate backend API
 services to those storing data (component, called ReservationPersister), and the one mostly used for reading reservation data 
 for display in UI and (rare) update operations (component called Reservation CRUD API).
+
 This will allow separately scalable services.
 
 ## Consequences
