@@ -1,30 +1,31 @@
 # The Road Warrior
-
-<!-- TOC -->
-* [The Road Warrior](#the-road-warrior)
-  * [Problem](#problem)
-    * [Requirements](#requirements)
-    * [Assumptions](#assumptions)
-    * [Approach](#approach)
-  * [Solution](#solution)
-    * [Capabilities](#capabilities)
-    * [Architecture Characteristics](#architecture-characteristics)
-    * [Architecture Style](#architecture-style)
-    * [Components](#components)
-    * [Logical diagram](#logical-diagram)
-    * [Physical diagram](#physical-diagram)
-  * [Architecture Decision Records](#architecture-decision-records)
-  * [References](#references)
-<!-- TOC -->
-
-Submission repo of DevexSolar team for the [O'Reilly Architectural Katas 2023](https://learning.oreilly.com/live-events/architectural-katas/0636920097101/) challenge.
+Submission repo of **DevexSolar** team for the 
+[O'Reilly Architectural Katas 2023](https://learning.oreilly.com/live-events/architectural-katas/0636920097101/) 
+challenge.
 
 <img src="road-warrior-logo.png" alt="Road Warrior Logo" width="400" height="99"/>
+
+## Contents
+
+<!-- TOC -->
+* [Problem](#problem)
+  * [Requirements](#requirements)
+  * [Assumptions](#assumptions)
+  * [Approach](#approach)
+* [Solution](#solution)
+  * [Capabilities](#capabilities)
+  * [Architecture Characteristics](#architecture-characteristics)
+  * [Architecture Style](#architecture-style)
+  * [Components](#components)
+  * [Logical diagram](#logical-diagram)
+  * [Physical diagram](#physical-diagram)
+* [Architecture Decision Records](#architecture-decision-records)
+* [References](#references)
+<!-- TOC -->
 
 ## Problem
 
 ### Requirements
-
 A new startup wants to build a next generation online trip management dashboard to allow travelers to see all of 
 their existing reservations organized by trips. The users should be able to use the application either through Web 
 or through their mobile devices.
@@ -36,17 +37,15 @@ trips, will post trip details to social media sites or will share directly with 
 The startup expects 15M registered users in the platform, having 2M of them be active active on a weekly basis. The startup also has a strict technical requirements for unplanned downtime (<5 mins per month), integration time (5 minutes), and response time (0.8s for Web and 1.4s for mobile).
 
 ### Assumptions
-
 Based on the limited available requirements, we had to make a number of assumptions about the product scope:
 
-- The startup has a limited budget and time to produce a MVP.
-- We must design an architecture for a greenfield product.
-- The startup is not affiliated with any given travel agency. Therefore, there will be multiple sources of reservations data and new sources can be plugged-in at any time in the future.
-- Reservations data can be retrieved in 3 ways - email parsing, APIs of travel companies (airlines, hotels, car rentals) and APIs of global distribution systems (such as SABRE and APOLLO).
-- Retrieved data will be "read-only" and the platform will not initiate any updates on the reservations.
+* The startup has a limited budget and time to produce a MVP.
+* We must design an architecture for a greenfield product.
+* The startup is not affiliated with any given travel agency. Therefore, there will be multiple sources of reservations data and new sources can be plugged-in at any time in the future.
+* Reservations data can be retrieved in 3 ways - email parsing, APIs of travel companies (airlines, hotels, car rentals) and APIs of global distribution systems (such as SABRE and APOLLO).
+* Retrieved data will be "read-only" and the platform will not initiate any updates on the reservations.
 
 ### Approach
-
 We followed an architecture design approach with the steps below:
 
 1. Acknowledge requirements
@@ -69,7 +68,6 @@ The deliverables of our architecture design are presented in the next section.
 ## Solution
 
 ### Capabilities
-
 To illustrate the needs which the architecture must satisfy, We started the architecture design with outlining the different types of actors in the system and their actions. Then we prepared a draft list of the components that are required to cover those actions.
 
 We created the following capabilities diagram:
@@ -80,7 +78,6 @@ We created the following capabilities diagram:
 </figure>
 
 ### Architecture Characteristics
-
 Based on the provided functional and non-functional requirements, we have identified the following important architecture characteristics:
 
 | Architecture Characteristic      | Rationale                                                                                                                                                                                                                                                                                   | Reference to requirements                                                                                   |
@@ -93,7 +90,6 @@ Based on the provided functional and non-functional requirements, we have identi
 | **Extensibility**                | The system will be gradually extended with more types of reservations and more data sources.                                                                                                                                                                                                | *"The system must interface with the agency’s existing airline, hotel, and car rental interface system..."* |
 
 ### Architecture Style
-
 Based on the (1) identified functional domain and capabilities and the (2) justified key architecture characteristics, we decided to design architecture in a hybrid style, combining the key aspects of the microkernel architecture and event-driven architecture.
 
 More details about this decision are presented in the respective ADR: [Architecture style](ADRs/overall-architecture-style.md)
@@ -101,7 +97,6 @@ More details about this decision are presented in the respective ADR: [Architect
 ### Components
 
 ### Logical diagram
-
 The diagram below gives a high-level overview of how the logical components interact with each other as well as with 
 external service providers.
 
@@ -110,7 +105,7 @@ external service providers.
   <figcaption style="font-style: italic;text-align: center">Figure 2. Logical component diagram</figcaption>
 </figure>
 
-Diagram notes:
+Diagram notes and component descriptions:
 
 1. Agency retrievers, GDS (Apollo) retriever, Email parser are event parsers reading their sources and sending the 
    standard JSON message to Message bus to be stored. They may include different fields (extended fields as per 
@@ -146,10 +141,10 @@ Diagram notes:
    and/or present the past data when app is still loading.
 
 ### Physical component diagram
-The purpose of the following diagram is to show layers of the physical components so that devops can start 
-planning the deployment. This is not much different from above, but aggregated UI components
-and backend APIs for UI into Backend-for-Frontend, as we believe from deployment standpoint it's easier, and anyway the same team is gonna work on that.
-Also, we find this important to emphasize there is a load-balancer between UI and BFF.
+The purpose of the following diagram is to show layers of the physical components so that devops can start planning 
+the deployment. This is not much different from above, but aggregated UI components and backend APIs for UI into 
+Backend-for-Frontend, as we believe from deployment standpoint it's easier, and anyway the same team is gonna 
+work on that. Also, we find this important to emphasize there is a load-balancer between UI and BFF.
 
 <figure>
   <img src="diagrams/physical-components-layered.jpg" alt="Physical component diagram (layered)">
@@ -158,14 +153,14 @@ Also, we find this important to emphasize there is a load-balancer between UI an
 
 ## Architecture Decision Records
 
-* ADR.1 [Architecture Style](./ADRs/overall-architecture-style.md)
-* ADR.2 [E-mail Processing](./ADRs/email-processing.md)
-* ADR.3 [Responsiveness (Caching)](./ADRs/responsiveness.md)
-* TODO ADR.4 for blue-green and HA&DR
-* TODO ADR.5 for cloud deployment
-* ADR.6 [Event bus](./ADRs/event-bus.md)
-* ADR.7 [Efficient data storage](./ADRs/efficient-data-storage.md)
-* ADR.8 [CQRS and scalability](./ADRs/cqrs.md)
+* ADR.1 [Architecture Style](ADRs/overall-architecture-style.md)
+* ADR.2 [E-mail Processing](ADRs/email-processing.md)
+* ADR.3 [Responsiveness (Caching)](ADRs/responsiveness.md)
+* ADR.4 [High Availability, Disaster Recovery, and Blue-Green Deployment](ADRs/hadr.md)
+* ADR.5 [Cloud Deployment](ADRs/cloud-deployment.md)
+* ADR.6 [Event bus](ADRs/event-bus.md)
+* ADR.7 [Efficient data storage](ADRs/efficient-data-storage.md)
+* ADR.8 [CQRS and scalability](ADRs/cqrs.md)
 
 ## References
 
